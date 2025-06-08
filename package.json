@@ -2,9 +2,9 @@
   "name": "GameChat",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "src/index.mjs",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node src/index.mjs"
   },
   "keywords": [],
   "author": "",
@@ -12,6 +12,10 @@
   "dependencies": {
     "express": "^5.1.0",
     "html": "^1.0.0",
-    "socket.io": "^4.8.1"
+    "socket.io": "^4.8.1",
+    "webpack": "^5.99.9"
+  },
+  "devDependencies": {
+    "webpack-cli": "^6.0.1"
   }
 }
