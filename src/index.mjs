@@ -8,11 +8,11 @@ const app = e();
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: "*", // allow cross-origin
+    origin: "*",
   }
 });
 
-const messages = []; // proper initialization
+const messages = [];
 
 app.get('/', (req, res) => {
     res.sendFile(path.join("D:/Neogamia/GameChat/src/index.html"));
@@ -22,10 +22,9 @@ app.get('/status', (req, res) => {
     res.json({ 'Status': 'Running' });
 });
 
-io.on('connection', (socket) => { // use 'connection' not 'connect'
+io.on('connection', (socket) => {
     console.log(`User with socket id: ${socket.id} connected`);
 
-    // Send recent chat history
     socket.emit('getFullChatHistory', messages);
     socket.emit('getLatestChatMessage', messages[messages.length - 1] || null);
 
@@ -34,7 +33,6 @@ io.on('connection', (socket) => { // use 'connection' not 'connect'
         messages.push(msg);
         console.log(`New element added to messages: ${msg}`);
         
-        // Broadcast to all connected sockets
         io.emit('getLatestChatMessage', msg);
     });
 
